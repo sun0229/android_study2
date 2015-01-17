@@ -1,10 +1,9 @@
 package com.example.c.t02_criminalintent;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -21,12 +20,10 @@ public class MainActivity extends ActionBarActivity {
         if(fr == null){
             fr = new CrimeFragment();
 
-            FragmentTransaction tr = fm.beginTransaction();
-            tr.add(R.id.fragmentContainer, fr)
-                    .commit();
-            //fm.beginTransaction()
-            //    .add(R.id.fragmentContainer, fr)
-            //    .commit();
+            //FragmentTransaction tr = fm.beginTransaction();
+            fm.beginTransaction()
+                .add(R.id.fragmentContainer, fr)
+                .commit();
         }
 
     }
