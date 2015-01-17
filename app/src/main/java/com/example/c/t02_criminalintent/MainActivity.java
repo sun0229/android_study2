@@ -1,5 +1,8 @@
 package com.example.c.t02_criminalintent;
 
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,6 +15,20 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fr = fm.findFragmentById(R.id.fragmentContainer);
+        if(fr == null){
+            fr = new CrimeFragment();
+
+            FragmentTransaction tr = fm.beginTransaction();
+            tr.add(R.id.fragmentContainer, fr)
+                    .commit();
+            //fm.beginTransaction()
+            //    .add(R.id.fragmentContainer, fr)
+            //    .commit();
+        }
+
     }
 
 
