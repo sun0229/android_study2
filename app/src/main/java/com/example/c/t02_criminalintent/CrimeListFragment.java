@@ -1,15 +1,14 @@
 package com.example.c.t02_criminalintent;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -37,8 +36,11 @@ public class CrimeListFragment extends ListFragment {
         super.onListItemClick(l, v, position, id);
 
         Crime c = (Crime)(getListAdapter()).getItem(position);
-        Log.d("CrimeListFragment >>> ", c.getTitle()+" Click!");
-        Toast.makeText(getActivity(), c.getTitle() + " Click!", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(getActivity(), CrimeActivity.class);
+        intent.putExtra(CrimeFragment.EXTRA_CRIME_ID,c.getId());
+
+        startActivity(intent);
     }
 
     private class CrimeAdapter extends ArrayAdapter<Crime>{
@@ -62,5 +64,11 @@ public class CrimeListFragment extends ListFragment {
 
             return convertView;
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((CrimeAdapter)getListAdapter()).notifyDataSetChanged();
     }
 }
